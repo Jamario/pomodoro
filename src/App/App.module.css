@@ -1,0 +1,14 @@
+.container{
+    background-color: var(--main-bg-color);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    padding-top: 48px;
+}
+
+.logo {
+    width: 160px;
+    height: 36px;
+}

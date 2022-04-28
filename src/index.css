@@ -1,10 +1,35 @@
+/* Custom colors */
+:root {
+  --main-bg-color: #1E213F;
+  --color-orange: #F87070;
+  --color-light-blue: #70F3F8;
+  --color-light-purple: #D881F8;
+  --color-text: #FFF;
+  --color-dark-blue: #161932;
+  --color-text-inactive: #D7E0FF;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+};
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-size: 10px;
+  font-family: serif;
+}
+
+
+html, body, #root{
+  height: 100%;
+  width: 100%;
 }
 
 code {
