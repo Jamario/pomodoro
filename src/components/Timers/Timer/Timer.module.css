@@ -1,23 +1,70 @@
 .container{
-    font-size: 10rem;
     color: white;
 }
 
 .outerRing{
     background: linear-gradient(315deg, #2E325A 0%, #0E112A 100%);
-    box-shadow: -50px -50px 100px #272C5A, 50px 50px 100px #121530;
-    border-radius: 100%;
+    box-shadow: -50px -25px 100px #272C5A, 50px 50px 100px #121530;
+    border-radius: 50%;
     padding: 22px;
 }
 
 .innerRing{
     background-color: var(--color-dark-blue);
-    border: 2px solid red;
-    border-radius: 100%;
-    display: flex;
+    border-radius: 50%; 
+    padding: 13.5px;
+    /* display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     height: 366px;
-    width: 366px;
+    width: 366px;  */
+}
+
+.timeface {
+    background-color: var(--color-dark-blue);
+    /* background-color: transparent; */
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 340px;
+    width: 340px; 
+    position: relative;
+}
+
+
+.time{
+    font-size: 10rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    z-index: 5;
+}
+
+.pause{
+    font-size: 1.5rem;
+    letter-spacing: 15px;
+    padding-left: 15px;
+    text-transform: uppercase;
+    z-index: 5;
+}
+
+
+.svgContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.svgContainer svg {
+    height: 340px;
+    width: 340px;
+}
+
+.progressBar {
+    fill: none;
+    stroke: var(--color-orange);
+    stroke-width: 4%;
+    stroke-linecap: round;
 }
