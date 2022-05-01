@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+
+import { displayTime, getMinutesAndSeconds } from "../../../utils/timeUtils";
+
 import styles from "./Timer.module.css";
 
 type TimerProps = {
@@ -19,6 +22,9 @@ const Timer = ({ currentTime, countdownStartTime }: TimerProps): JSX.Element => 
     const strokeDashOffsetValue = entireStrokeLength - countdownSegment * currentTime;
     console.log("stroke dash offset value", strokeDashOffsetValue);
 
+    const { minutes, seconds } = getMinutesAndSeconds(currentTime);
+    const timeString = displayTime(minutes, seconds);
+
     return (
         <div>
             <div className={styles.outerRing}>
@@ -36,7 +42,7 @@ const Timer = ({ currentTime, countdownStartTime }: TimerProps): JSX.Element => 
                                 />
                             </svg>
                         </div>
-                        <p className={styles.time}>00:00</p>
+                        <p className={styles.time}>{timeString}</p>
                         <p className={styles.pause}>PAUSE</p>
                     </div>
                 </div>
