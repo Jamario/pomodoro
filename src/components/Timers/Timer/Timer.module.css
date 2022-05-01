@@ -67,4 +67,6 @@
     stroke: var(--color-orange);
     stroke-width: 4%;
     stroke-linecap: round;
+    /* stroke-dasharray: 1030;
+    stroke-dashoffset: 0; */
 }

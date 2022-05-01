@@ -1,6 +1,24 @@
+import { useState, useEffect } from "react";
 import styles from "./Timer.module.css";
 
-const Timer = (): JSX.Element => {
+type TimerProps = {
+    currentTime: number;
+    countdownStartTime: number;
+};
+
+const entireStrokeLength = 1030;
+
+const Timer = ({ currentTime, countdownStartTime }: TimerProps): JSX.Element => {
+    const [countdownSegment, setCountdownSegment] = useState(0);
+
+    useEffect(() => {
+        const segment = entireStrokeLength / countdownStartTime;
+        setCountdownSegment(segment);
+    }, [countdownStartTime]);
+
+    const strokeDashOffsetValue = entireStrokeLength - countdownSegment * currentTime;
+    console.log("stroke dash offset value", strokeDashOffsetValue);
+
     return (
         <div>
             <div className={styles.outerRing}>
@@ -8,7 +26,14 @@ const Timer = (): JSX.Element => {
                     <div className={styles.timeface}>
                         <div className={styles.svgContainer}>
                             <svg xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="50%" cy="50%" r="48%" className={styles.progressBar} />
+                                <circle
+                                    cx="50%"
+                                    cy="50%"
+                                    r="48%"
+                                    className={styles.progressBar}
+                                    strokeDasharray={entireStrokeLength}
+                                    strokeDashoffset={strokeDashOffsetValue}
+                                />
                             </svg>
                         </div>
                         <p className={styles.time}>00:00</p>
