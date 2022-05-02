@@ -1,40 +1,30 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import Timer from "../Timer";
+import { TimerState } from "../types";
 import styles from "./Pomodoro.module.css";
 
 const Pomodoro = (): JSX.Element => {
     const countdownStartTime = 60; //temporarily
-    const [currentTime, setCurrentTime] = useState(countdownStartTime);
-    const [intervalID, setIntervalID] = useState<NodeJS.Timer | null>(null);
+    const [timerState, setTimerState] = useState(TimerState.Stopped);
 
-    useEffect(() => {
-        console.log("useEffect");
+    /**
+     * the timer has multiple states; paused, running, finished
+     * finished ~> restart
+     * running ~> pause
+     * paused ~> start
+     */
+    const changeTimerState = (newTimerState: TimerState) => {
+        setTimerState(newTimerState);
+    };
 
-        let intervalReference: NodeJS.Timer;
-
-        intervalReference = setInterval(() => {
-            setCurrentTime((currentTime) => (currentTime > 0 ? currentTime - 1 : currentTime));
-        }, 1000);
-
-        setIntervalID(intervalReference);
-        return () => {
-            console.log("clear interval id");
-            clearInterval(intervalReference);
-        };
-    }, []);
-
-    useEffect(() => {
-        if (intervalID !== null && currentTime <= 0) {
-            console.log("clear interval");
-            clearInterval(intervalID);
-        }
-    }, [currentTime, intervalID]);
-
-    console.log("current time", currentTime);
     return (
         <div className={styles.container}>
-            <Timer currentTime={currentTime} countdownStartTime={countdownStartTime} />
+            <Timer
+                countdownStartTime={countdownStartTime}
+                timerState={timerState}
+                changeTimerState={changeTimerState}
+            />
         </div>
     );
 };

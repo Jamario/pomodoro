@@ -42,12 +42,21 @@
     z-index: 5;
 }
 
-.pause{
+.stateButton{
     font-size: 1.5rem;
     letter-spacing: 15px;
     padding-left: 15px;
     text-transform: uppercase;
     z-index: 5;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text);
+    font-weight: bold;
+}
+
+.stateButton:hover{
+    color: var(--color-orange);
 }
 
 
