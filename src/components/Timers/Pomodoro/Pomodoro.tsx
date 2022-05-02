@@ -14,7 +14,7 @@ const Pomodoro = (): JSX.Element => {
         let intervalReference: NodeJS.Timer;
 
         intervalReference = setInterval(() => {
-            setCurrentTime((currentTime) => (currentTime > 1 ? currentTime - 1 : currentTime));
+            setCurrentTime((currentTime) => (currentTime > 0 ? currentTime - 1 : currentTime));
         }, 1000);
 
         setIntervalID(intervalReference);
@@ -25,7 +25,7 @@ const Pomodoro = (): JSX.Element => {
     }, []);
 
     useEffect(() => {
-        if (intervalID !== null && currentTime <= 1) {
+        if (intervalID !== null && currentTime <= 0) {
             console.log("clear interval");
             clearInterval(intervalID);
         }
