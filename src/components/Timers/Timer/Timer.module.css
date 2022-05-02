@@ -13,12 +13,6 @@
     background-color: var(--color-dark-blue);
     border-radius: 50%; 
     padding: 13.5px;
-    /* display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    height: 366px;
-    width: 366px;  */
 }
 
 .timeface {
@@ -69,6 +63,7 @@
 .svgContainer svg {
     height: 340px;
     width: 340px;
+    transform: rotate(-90deg);
 }
 
 .progressBar {
@@ -76,6 +71,4 @@
     stroke: var(--color-orange);
     stroke-width: 4%;
     stroke-linecap: round;
-    /* stroke-dasharray: 1030;
-    stroke-dashoffset: 0; */
 }
