@@ -6,9 +6,17 @@
     width: 100%;
     align-items: center;
     padding-top: 48px;
+    position: relative;
 }
 
 .logo {
     width: 160px;
     height: 36px;
+}
+
+.settingsBtn {
+    background: none;
+    border: none;
+    margin-top: 65px;
+    cursor: pointer;
 }
