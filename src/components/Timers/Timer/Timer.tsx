@@ -5,6 +5,7 @@ import { getStateButtonText } from "./Timer.utils";
 import { TimerState } from "../types";
 
 import styles from "./Timer.module.css";
+import { useApp } from "../../../contexts/appContext";
 
 type TimerProps = {
     countdownStartTime: number;
@@ -18,6 +19,9 @@ const Timer = ({ countdownStartTime, timerState, changeTimerState }: TimerProps)
     const [countdownSegment, setCountdownSegment] = useState(0);
     const [currentTime, setCurrentTime] = useState(countdownStartTime);
     const [intervalID, setIntervalID] = useState<number | undefined>(undefined);
+
+    const { getCurrentGlobalStyle } = useApp();
+    const { color } = getCurrentGlobalStyle();
 
     useEffect(() => {
         const segment = entireStrokeLength / countdownStartTime;
@@ -112,6 +116,7 @@ const Timer = ({ countdownStartTime, timerState, changeTimerState }: TimerProps)
                                     cy="50%"
                                     r="48%"
                                     className={styles.progressBar}
+                                    stroke={color}
                                     strokeDasharray={entireStrokeLength}
                                     strokeDashoffset={strokeDashOffsetValue}
                                 />

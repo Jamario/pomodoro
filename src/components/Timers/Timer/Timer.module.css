@@ -68,7 +68,6 @@
 
 .progressBar {
     fill: none;
-    stroke: var(--color-orange);
     stroke-width: 4%;
     stroke-linecap: round;
 }

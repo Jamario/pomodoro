@@ -1,6 +1,5 @@
 .container {
     background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -9,6 +8,15 @@
     top: 0;
     left: 0;
     z-index: 99;
+    color: var(--color-dark-blue);
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: flex;
 }
 
 .settings {
@@ -26,7 +34,7 @@
 }
 
 .modalHeader {
-    border-bottom: 2px solid #E3E1E1;
+    border-bottom: 1px solid #E3E1E1;
     justify-content: space-between;
     padding: 0 40px 32px;
 }
@@ -71,4 +79,111 @@
     width: 140px;
     border: none;
     border-radius: 10px;
+    margin-top: 5px;
+    padding: 15px;
+}
+
+.input:focus {
+    outline: var(--color-grey) solid 1px;
+}
+
+.inputContainer {
+    display: block;
+}
+
+.label {
+    font-size: 1.3rem;
+    opacity: 0.6;
+    font-weight: bold;
+}
+
+.timeSection {
+    border-bottom: 1px solid #E3E1E1;
+    margin: 0 40px;
+    padding: 28px 0 24px;
+}
+
+.container h2 {
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.timeSection h2 {
+    margin-bottom: 20px;
+}
+
+.container ul {
+    display: flex;
+    list-style-type: none;
+}
+
+.container li {
+    margin-right: 16px;
+}
+
+.container li:last-child {
+    margin-right: 0;
+}
+
+.container li button{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--main-bg-color);
+}
+
+.container li button>span{
+    opacity: 70%;
+}
+
+.activeFontButton {
+    cursor: default;
+    background-color: var(--color-dark-blue);
+    color: white !important;
+}
+
+.activeFontButton > span {
+    opacity: 100% !important;
+}
+
+.fontSection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 40px;
+    border-bottom: 1px solid #E3E1E1;
+    padding: 35px 0 30px;
+}
+
+.colorSection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 35px 0 30px;
+    margin: 0 40px;
+}
+
+
+.colorSection li:first-child button {
+    background-color: var(--color-orange);
+}
+
+.colorSection li:nth-child(2) button{
+    background-color: var(--color-light-blue);
+}
+
+.colorSection li:last-child button {
+    background-color: var(--color-light-purple);
+}
+
+.activeColorButton::after {
+    content: ' \2714';
 }

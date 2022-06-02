@@ -1,4 +1,4 @@
-import { getMinutesAndSeconds, displayTime} from './timeUtils';
+import { getMinutesAndSeconds, displayTime, convertMinutesToSeconds} from './timeUtils';
 
 describe('Time Utility Functions: getMinutesAndSeconds', () => {
     it('should return 1 minute and 0 seconds, given 60 seconds', () => {
@@ -53,5 +53,27 @@ describe('Time Utility Functions: displayTime', () => {
         const expectedValue = '99:99';
         const actualValue = displayTime(minutes, seconds);
         expect(actualValue).toBe(expectedValue);
+    });
+});
+
+describe('Time Utility Functions: convertMinutesToSeconds', () => {
+    it('should return 60 seconds, given 1 minute', () => {
+        const minutes = 1;
+        const expectedValue = 60;
+        const actualValue = convertMinutesToSeconds(minutes);
+        expect(actualValue).toBe(expectedValue);
+    });
+    it('should return 1500 seconds, given 25 minute', () => {
+        const minutes = 25;
+        const expectedValue = 1500;
+        const actualValue = convertMinutesToSeconds(minutes);
+        expect(actualValue).toBe(expectedValue);
+    });
+    it('should return 5940 seconds, given 99 minute', () => {
+        const minutes = 99;
+        const expectedValue = 5940;
+        const actualValue = convertMinutesToSeconds(minutes);
+        expect(actualValue).toBe(expectedValue);
+
     });
 });

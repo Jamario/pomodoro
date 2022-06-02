@@ -1,3 +1,7 @@
+export function convertMinutesToSeconds(timeInMinutes: number): number {
+    return timeInMinutes * 60;
+}
+
 export function getMinutesAndSeconds(timeInSeconds : number): { minutes: number, seconds: number} {
     let minutes = 0;
     let seconds = 0;

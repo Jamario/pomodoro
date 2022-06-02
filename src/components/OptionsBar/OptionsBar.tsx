@@ -11,13 +11,13 @@ const OptionsBar = ({ timerType, changeTimerType }: AppProps): JSX.Element => {
 
     return (
         <div className={styles.container}>
-            <Button handleClick={handleButtonClick(1)} className={timerType === 1 ? styles.buttonActive : ""}>
+            <Button handleClick={handleButtonClick(1)} isActive={timerType === 1}>
                 pomodoro
             </Button>
-            <Button handleClick={handleButtonClick(2)} className={timerType === 2 ? styles.buttonActive : ""}>
+            <Button handleClick={handleButtonClick(2)} isActive={timerType === 2}>
                 short break
             </Button>
-            <Button handleClick={handleButtonClick(3)} className={timerType === 3 ? styles.buttonActive : ""}>
+            <Button handleClick={handleButtonClick(3)} isActive={timerType === 3}>
                 long break
             </Button>
         </div>
