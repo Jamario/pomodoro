@@ -39,7 +39,6 @@ const SettingsModal = ({ show, closeModal }: SettingsModalProps): JSX.Element =>
     const handleCloseButtonClick = () => closeModal();
 
     const handleListButtonClick = (type: string, index: number) => () => {
-        console.log("button clicked", type, index);
         if (type === "font") {
             setFormValues({ ...formValues, font: index });
         } else if (type === "color") {

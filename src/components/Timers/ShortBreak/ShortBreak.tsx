@@ -1,19 +1,20 @@
 import { useState } from "react";
+import { useApp } from "../../../contexts/appContext";
 
 import Timer from "../Timer";
 import { TimerState } from "../types";
+
+import { convertMinutesToSeconds } from "../../../utils/timeUtils";
 import styles from "./ShortBreak.module.css";
 
 const ShortBreak = (): JSX.Element => {
-    const countdownStartTime = 60; //temporarily
     const [timerState, setTimerState] = useState(TimerState.Stopped);
 
-    /**
-     * the timer has multiple states; paused, running, finished
-     * finished ~> restart
-     * running ~> pause
-     * paused ~> start
-     */
+    const {
+        settings: { shortbreak },
+    } = useApp();
+    const countdownStartTime = convertMinutesToSeconds(shortbreak);
+
     const changeTimerState = (newTimerState: TimerState) => {
         setTimerState(newTimerState);
     };

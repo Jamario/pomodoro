@@ -11,7 +11,7 @@ import { useApp } from "../contexts/appContext";
 
 const App = (): JSX.Element => {
     const [timerType, setTimerType] = useState(1);
-    const [showSettingsModal, setShowSettingsModal] = useState(true);
+    const [showSettingsModal, setShowSettingsModal] = useState(false);
     const { getCurrentGlobalStyle } = useApp();
     const { font: appFont } = getCurrentGlobalStyle();
 

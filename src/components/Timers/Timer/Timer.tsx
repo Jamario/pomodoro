@@ -6,6 +6,7 @@ import { TimerState } from "../types";
 
 import styles from "./Timer.module.css";
 import { useApp } from "../../../contexts/appContext";
+import { usePrevious } from "../../../hooks/custom";
 
 type TimerProps = {
     countdownStartTime: number;
@@ -19,6 +20,7 @@ const Timer = ({ countdownStartTime, timerState, changeTimerState }: TimerProps)
     const [countdownSegment, setCountdownSegment] = useState(0);
     const [currentTime, setCurrentTime] = useState(countdownStartTime);
     const [intervalID, setIntervalID] = useState<number | undefined>(undefined);
+    const previousCountdownStartTime = usePrevious(countdownStartTime);
 
     const { getCurrentGlobalStyle } = useApp();
     const { color } = getCurrentGlobalStyle();
@@ -42,12 +44,21 @@ const Timer = ({ countdownStartTime, timerState, changeTimerState }: TimerProps)
         };
     }, [intervalID]);
 
+    // this effect resets the timer when the starting time changes
+    // the starting time can be changed in settings while the timer is active.
+    useEffect(() => {
+        if (previousCountdownStartTime !== undefined && countdownStartTime !== previousCountdownStartTime) {
+            setCurrentTime(countdownStartTime);
+            clearInterval(intervalID);
+            changeTimerState(TimerState.Stopped);
+        }
+    }, [countdownStartTime, intervalID, previousCountdownStartTime, changeTimerState]);
+
     const startNewTimer = () => {
         let intervalReference: number;
 
         intervalReference = window.setInterval(() => {
             setCurrentTime((currentTime) => (currentTime > 0 ? currentTime - 1 : currentTime));
-            console.log("timer ticks");
         }, 1000);
 
         setIntervalID(intervalReference);
@@ -76,7 +87,6 @@ const Timer = ({ countdownStartTime, timerState, changeTimerState }: TimerProps)
     };
 
     const strokeDashOffsetValue = entireStrokeLength - countdownSegment * currentTime;
-    console.log("stroke dash offset value", strokeDashOffsetValue);
 
     const { minutes, seconds } = getMinutesAndSeconds(currentTime);
     const timeString = displayTime(minutes, seconds);
