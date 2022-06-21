@@ -24,15 +24,17 @@ const App = (): JSX.Element => {
     };
 
     return (
-        <div className={styles.container} style={fontStyle}>
-            <img src={logo} alt="Application logo." />
-            <OptionsBar timerType={timerType} changeTimerType={changeTimerType} />
-            <Timers timerType={timerType} />
-            <button className={styles.settingsBtn} onClick={() => setShowSettingsModal(true)}>
-                <img src={settingsIcon} alt="Settings icon." />
-            </button>
+        <>
+            <div className={styles.container} style={fontStyle}>
+                <img src={logo} alt="Application logo." />
+                <OptionsBar timerType={timerType} changeTimerType={changeTimerType} />
+                <Timers timerType={timerType} />
+                <button className={styles.settingsBtn} onClick={() => setShowSettingsModal(true)}>
+                    <img src={settingsIcon} alt="Settings icon." />
+                </button>
+            </div>
             <SettingsModal show={showSettingsModal} closeModal={() => setShowSettingsModal(false)} />
-        </div>
+        </>
     );
 };
 

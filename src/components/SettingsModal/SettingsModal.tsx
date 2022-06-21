@@ -79,9 +79,9 @@ const SettingsModal = ({ show, closeModal }: SettingsModalProps): JSX.Element =>
                 </div>
                 <div className={styles.timeSection}>
                     <h2>Time (MINUTES)</h2>
-                    <div className={`${styles.row}`}>
+                    <div>
                         <form onSubmit={handleSubmitForm}>
-                            <div className={`${styles.row}`}>
+                            <div className={`${styles.group}`}>
                                 <SettingsInput
                                     label="pomodoro"
                                     name="pomodoro"
