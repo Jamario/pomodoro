@@ -7,6 +7,7 @@ import { TimerState } from "../types";
 import styles from "./Timer.module.css";
 import { useApp } from "../../../contexts/appContext";
 import { usePrevious } from "../../../hooks/custom";
+import { useMediaQuery } from "../../../hooks/timer";
 
 type TimerProps = {
     countdownStartTime: number;
@@ -14,21 +15,27 @@ type TimerProps = {
     changeTimerState: (newTimerState: TimerState) => void;
 };
 
-const entireStrokeLength = 1030;
-
 const Timer = ({ countdownStartTime, timerState, changeTimerState }: TimerProps): JSX.Element => {
+    const timerStyles = useMediaQuery("(max-width: 550px)");
     const [countdownSegment, setCountdownSegment] = useState(0);
+    const [strokeDashOffsetValue, setOffsetValue] = useState(0);
     const [currentTime, setCurrentTime] = useState(countdownStartTime);
     const [intervalID, setIntervalID] = useState<number | undefined>(undefined);
+
     const previousCountdownStartTime = usePrevious(countdownStartTime);
 
     const { getCurrentGlobalStyle } = useApp();
     const { color } = getCurrentGlobalStyle();
 
     useEffect(() => {
-        const segment = entireStrokeLength / countdownStartTime;
+        const segment = timerStyles.circumference / countdownStartTime;
         setCountdownSegment(segment);
-    }, [countdownStartTime]);
+    }, [countdownStartTime, timerStyles.circumference]);
+
+    useEffect(() => {
+        const strokeDashOffsetValue = timerStyles.circumference - countdownSegment * currentTime;
+        setOffsetValue(strokeDashOffsetValue);
+    }, [countdownSegment, timerStyles.circumference, currentTime]);
 
     useEffect(() => {
         if (intervalID && currentTime <= 0) {
@@ -86,8 +93,6 @@ const Timer = ({ countdownStartTime, timerState, changeTimerState }: TimerProps)
         }
     };
 
-    const strokeDashOffsetValue = entireStrokeLength - countdownSegment * currentTime;
-
     const { minutes, seconds } = getMinutesAndSeconds(currentTime);
     const timeString = displayTime(minutes, seconds);
 
@@ -118,21 +123,30 @@ const Timer = ({ countdownStartTime, timerState, changeTimerState }: TimerProps)
         <div>
             <div className={styles.outerRing}>
                 <div className={styles.innerRing}>
-                    <div className={styles.timeface}>
+                    <div
+                        className={styles.timeface}
+                        style={{ height: timerStyles.diameter, width: timerStyles.diameter }}
+                    >
                         <div className={styles.svgContainer}>
-                            <svg xmlns="http://www.w3.org/2000/svg">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                height={timerStyles.diameter}
+                                width={timerStyles.diameter}
+                            >
                                 <circle
                                     cx="50%"
                                     cy="50%"
                                     r="48%"
                                     className={styles.progressBar}
                                     stroke={color}
-                                    strokeDasharray={entireStrokeLength}
+                                    strokeDasharray={timerStyles.circumference}
                                     strokeDashoffset={strokeDashOffsetValue}
                                 />
                             </svg>
                         </div>
-                        <p className={styles.time}>{timeString}</p>
+                        <p className={styles.time} style={{ fontSize: timerStyles.fontSize }}>
+                            {timeString}
+                        </p>
                         <button className={styles.stateButton} onClick={handleClick}>
                             {getStateButtonText(timerState)}
                         </button>

@@ -23,8 +23,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 340px;
-    width: 340px; 
+    height: 280px;
+    width: 280px; 
     position: relative;
 }
 
@@ -61,8 +61,6 @@
 }
 
 .svgContainer svg {
-    height: 340px;
-    width: 340px;
     transform: rotate(-90deg);
 }
 
