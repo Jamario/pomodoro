@@ -3,6 +3,7 @@
     border: none;
     border-radius: 26.5px;
     color: var(--color-grey);
+    font-family: inherit;
     height: 48px;
     width: 120px;
     cursor: pointer;
